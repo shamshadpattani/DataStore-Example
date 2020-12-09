@@ -3,7 +3,7 @@ package com.example.datastoreexample
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,13 +15,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        val buttonPreference:Button=findViewById(R.id.buttonPreference)
         buttonPreference.setOnClickListener {
             startActivity(Intent(this@MainActivity, PreferenceDataStoreActivity::class.java))
         }
 
-        /*buttonProto.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ProtoDatastoreActivity::class.java))
-        }*/
+       buttonProto.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ProtoDataStoreActivity::class.java))
+        }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id "com.google.protobuf" version "0.8.12"
 }
 
 android {
@@ -62,5 +63,19 @@ dependencies {
 
     // Protobuf
     implementation  "com.google.protobuf:protobuf-javalite:3.11.0"
+}
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.11.0"
+    }
 
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }

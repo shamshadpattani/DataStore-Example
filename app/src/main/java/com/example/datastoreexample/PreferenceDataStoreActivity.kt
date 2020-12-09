@@ -20,7 +20,7 @@ class PreferenceDataStoreActivity : AppCompatActivity() {
 
     private fun subscribe() {
         bookmarkPreferences.bookmark.asLiveData().observe(this, Observer {
-            savedText.text = it
+            savedText.text = "Recently Bookmarked:$it"
         })
     }
 
