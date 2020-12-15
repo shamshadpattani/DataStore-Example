@@ -53,13 +53,10 @@ class FoodPreferenceManager(context: Context) {
         }
 
         UserFoodPreference(type, taste)
-
     }
 
-    object FoodPreferenceSerializer : Serializer<FoodPreferences> {
-        override val defaultValue: FoodPreferences
-            get() = TODO("Not yet implemented")
 
+    object FoodPreferenceSerializer : Serializer<FoodPreferences> {
         override fun readFrom(input: InputStream): FoodPreferences {
             try {
                 return FoodPreferences.parseFrom(input)
@@ -71,8 +68,40 @@ class FoodPreferenceManager(context: Context) {
         override fun writeTo(t: FoodPreferences, output: OutputStream) {
             t.writeTo(output)
         }
+
+        override val defaultValue: FoodPreferences
+            get() = FoodPreferences.getDefaultInstance()
+    }
+    suspend fun updateUserFoodTypePreference(type: FoodType?) {
+        val foodType = when (type) {
+            FoodType.VEG -> FoodPreferences.FoodType.TYPE_VEG
+            FoodType.NON_VEG -> FoodPreferences.FoodType.TYPE_NON_VEG
+            null -> FoodPreferences.FoodType.TYPE_UNSPECIFIED
+        }
+
+        dataStore.updateData { preferences ->
+            preferences.toBuilder()
+                .setType(foodType)
+                .build()
+        }
+    }
+
+    suspend fun updateUserFoodTastePreference(taste: FoodTaste?) {
+        val foodTaste = when (taste) {
+            FoodTaste.SWEET -> FoodPreferences.FoodTaste.TASTE_SWEET
+            FoodTaste.SPICY -> FoodPreferences.FoodTaste.TASTE_SPICY
+            null -> FoodPreferences.FoodTaste.TASTE_UNSPECIFIED
+        }
+
+        dataStore.updateData { preferences ->
+            preferences.toBuilder()
+                .setTaste(foodTaste)
+                .build()
+        }
     }
 }
+
+
  data class  UserFoodPreference(
        val type: FoodType?,
        val taste: FoodTaste?
