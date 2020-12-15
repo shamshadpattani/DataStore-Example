@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PreferenceDataStoreActivity"/>
+        <activity android:name="proto.ProtoDataStoreActivity"/>
     </application>
 
 </manifest>
