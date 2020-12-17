@@ -40,6 +40,9 @@ class FoodPreferenceManager(context: Context) {
         } else {
             throw it
         }
+        /**
+         * read data
+         */
     }.map {
         val type = when (it.type) {
             FoodPreferences.FoodType.TYPE_VEG -> FoodType.VEG
@@ -72,6 +75,9 @@ class FoodPreferenceManager(context: Context) {
         override val defaultValue: FoodPreferences
             get() = FoodPreferences.getDefaultInstance()
     }
+/**
+ * write data for food type
+ */
     suspend fun updateUserFoodTypePreference(type: FoodType?) {
         val foodType = when (type) {
             FoodType.VEG -> FoodPreferences.FoodType.TYPE_VEG
@@ -85,6 +91,9 @@ class FoodPreferenceManager(context: Context) {
                 .build()
         }
     }
+    /**
+     * write data for food taste
+     */
 
     suspend fun updateUserFoodTastePreference(taste: FoodTaste?) {
         val foodTaste = when (taste) {
