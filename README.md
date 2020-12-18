@@ -4,9 +4,11 @@ DataStore a replacement for SharedPreferences
 
 # What is data store
 
-     Jetpack DataStore is a data storage solution. It allows us to store key-value pairs (like SharedPreferences) 
+     Jetpack DataStore is a data storage solution. It allows us to store 
+     key-value pairs (like SharedPreferences) 
      or typed objects with protocol buffers. DataStore uses Kotlin 
-     and Coroutines + Flow to store data synchronously with consistency and transaction support 
+     and Coroutines + Flow to store data synchronously
+     with consistency and transaction support 
 # Two Type
   ## 1 Preferences DataStore
        stores and accesses data using keys. 
